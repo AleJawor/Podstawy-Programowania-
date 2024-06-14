@@ -1,0 +1,97 @@
+# Importowanie modułu random
+import random
+
+# Wydrukowanie instrukcji gry
+# Konkatencja ciągów znaków (stringów)
+print('WITAJ W GRZE PAPIER-KAMIEN-NOZYCE!!! \n \n'
+      + "PONIZEJ ZNAJDUJA SIE ZASADY GRY: \n"
+      + "KAMIEN vs PAPIER -> PAPIER WYGRYWA \n"
+      + "KAMIEN vs NOZYCZKI -> KAMIEN WYGRYWA \n"
+      + "PAPIER vs NOZYCZKI -> NOZYCZKI WYGRYWAJA \n")
+
+# Główna pętla gry
+while True:
+    # Wyświetlenie opcji wyboru dla użytkownika
+    print("WPISZ CZYM ZAGRASZ? \n 1 - KAMIEN \n 2 - PAPIER \n 3 - NOZYCZKI \n \n")
+
+    # Pobranie wyboru od użytkownika
+    choice = int(input("WPISZ SWOJ WYBOR :"))
+
+    # Pętla do momentu, gdy użytkownik poda poprawny wybór (1, 2 lub 3)
+    while choice > 3 or choice < 1:
+        choice = int(input('WPISZ POPRAWNY WYBOR, PROSZE '))
+
+    # Inicjalizacja zmiennej choice_name odpowiadającej wyborowi użytkownika
+    if choice == 1:
+        choice_name = 'KAMIEN'
+    elif choice == 2:
+        choice_name = 'PAPIER'
+    else:
+        choice_name = 'NOZYCZKI'
+
+    # Wydrukowanie wyboru użytkownika
+    print('TWOJ WYBOR TO \n \n', choice_name)
+    print('KOLEJ KOMPUTERA (..) ')
+
+    # Losowy wybór komputera spośród 1, 2 i 3
+    comp_choice = random.randint(1, 3)
+
+    # Pętla do momentu, gdy wybór komputera jest różny od wyboru użytkownika
+    while comp_choice == choice:
+        comp_choice = random.randint(1, 3)
+
+    # Inicjalizacja zmiennej comp_choice_name odpowiadającej wyborowi komputera
+    if comp_choice == 1:
+        comp_choice_name = 'KAMIEN'
+    elif comp_choice == 2:
+        comp_choice_name = 'PAPIER'
+    else:
+        comp_choice_name = 'NOZYCZKI'
+    
+    # Wydrukowanie wyboru komputera
+    print("WYBOR KOMPUTERA TO \n \n", comp_choice_name)
+    print(choice_name, 'VS', comp_choice_name)
+    
+    # Sprawdzenie, czy jest remis
+    if choice == comp_choice:
+        print('JEST REMIS', end="")
+        result = "REMIS"
+    
+    # Warunki wygranej
+    if (choice == 1 and comp_choice == 2):
+        print('PAPIER WYGRYWA!!!', end="")
+        result = 'PAPIER'
+    elif (choice == 2 and comp_choice == 1):
+        print('PAPIER WYGRYWA!!!', end="")
+        result = 'PAPIER'
+
+    if (choice == 1 and comp_choice == 3):
+        print('KAMIEN WYGRYWA!!!', end="")
+        result = 'KAMIEN'
+    elif (choice == 3 and comp_choice == 1):
+        print('KAMIEN WYGRYWA!!!', end="")
+        result = 'KAMIEN'
+
+    if (choice == 2 and comp_choice == 3):
+        print('NOZYCZKI WYGRYWAJA!!!', end="")
+        result = 'NOZYCZKI'
+    elif (choice == 3 and comp_choice == 2):
+        print('NOZYCZKI WYGRYWAJA!!!', end="")
+        result = 'NOZYCZKI'
+
+    # Wydrukowanie wyniku gry
+    if result == 'REMIS':
+        print("<== MOZE JESZCZE RAZ? ==>")
+    elif result == choice_name:
+        print("TY WYGRYWASZ!!!")
+    else:
+        print("KOMPUTER WYGRYWA!!! \n")
+    
+    # Pytanie użytkownika, czy chce zagrać ponownie
+    print("CZY CHCESZ ZAGRAC PONOWNIE? (T/N)")
+    ans = input().lower()
+    if ans == 'n':
+        break
+
+# Po zakończeniu pętli głównej, wydrukowanie podziękowania za grę
+print("DZIEKUJE ZA GRE")
